@@ -1,4 +1,5 @@
-const xss = require('xss')
+/* eslint-disable strict */
+const xss = require('xss');
 
 const ReviewsService = {
   getById(db, id) {
@@ -30,7 +31,7 @@ const ReviewsService = {
         'usr.id',
       )
       .where('rev.id', id)
-      .first()
+      .first();
   },
 
   insertReview(db, newReview) {
@@ -41,7 +42,7 @@ const ReviewsService = {
       .then(([review]) => review)
       .then(review =>
         ReviewsService.getById(db, review.id)
-      )
+      );
   },
 
   serializeReview(review) {
@@ -52,8 +53,8 @@ const ReviewsService = {
       thing_id: review.thing_id,
       date_created: review.date_created,
       user: review.user || {},
-    }
+    };
   }
-}
+};
 
-module.exports = ReviewsService
+module.exports = ReviewsService; 
